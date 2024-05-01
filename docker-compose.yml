@@ -14,7 +14,7 @@ services:
     # Montre les volumes du conteneur.  
     volumes:
     #Montre le répertoire local 'projectProfil' au répertoire '/var/www/html' dans le conteneur.
-      - ./projectProfil:/var/www/html
+      - ./projectProfil/:/var/www/html/
    # Configuration pour la construction de l'image.
     build:
       # Utilise le répertoire courant comme contexte pour la construction.
