@@ -2,14 +2,7 @@ pipeline {
     agent any
 
     stages {
-        // stage('Build') {
-        //     steps {
-        //         // Étape de construction de l'image Docker
-        //         script {
-        //             dockerComposeBuild()
-        //         }
-        //     }
-        // }
+       
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
@@ -31,10 +24,7 @@ pipeline {
     }
 }
 
-// def dockerComposeBuild() {
-//     // Commande pour construire les images Docker avec Docker Compose
-//     sh 'docker-compose build'
-// }
+
 
 def deployWithDockerCompose() {
     // Commande pour démarrer les conteneurs avec Docker Compose
