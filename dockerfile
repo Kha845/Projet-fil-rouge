@@ -7,7 +7,7 @@ FROM php:8.2-apache
 
 #Cette ligne met à jour les listes de paquets pour les mises à jour et installe les mises à jour nécessaires.
 # Le drapeau -y est utilisé pour répondre automatiquement oui à toute demande de confirmation.
-RUN apt-get update 
+RUN apt-get update && apt-get upgrade -y
 
 #Cette ligne installe les extensions PHP nécessaires à la connectivité avec la base de données. Plus précisément, 
 #elle installe les extensions MySQL pour PHP : mysqli (MySQL Improved) et pdo_mysql (driver PHP Data Objects pour MySQL).
