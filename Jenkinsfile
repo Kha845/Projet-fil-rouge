@@ -6,9 +6,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                script {
-                    deployWithDockerCompose()
-                }
+                sh 'docker-compose up '
+            
             }
         }
     }
@@ -26,10 +25,6 @@ pipeline {
 
 
 
-def deployWithDockerCompose() {
-    // Commande pour démarrer les conteneurs avec Docker Compose
-    sh 'docker-compose up '
-}
 
 
 
