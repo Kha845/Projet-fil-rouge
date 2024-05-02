@@ -3,6 +3,8 @@
 #spécifie l'image de base à utiliser, qui est PHP 8.2 avec le serveur Apache installé.
 FROM php:8.2-apache
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated apt-get curl ca-certificates
+
 #Cette ligne met à jour les listes de paquets pour les mises à jour et installe les mises à jour nécessaires.
 # Le drapeau -y est utilisé pour répondre automatiquement oui à toute demande de confirmation.
 RUN apt-get update && apt-get upgrade -y
