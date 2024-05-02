@@ -13,7 +13,7 @@ pipeline {
          stage('Test') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'php index.php'
+                sh 'php projectProfil/index.php'
             
             }
         }
