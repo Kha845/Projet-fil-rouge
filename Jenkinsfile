@@ -25,6 +25,17 @@ pipeline {
             
             }
         }
+        stage('Copy Project Files') {
+            steps {
+                script {
+                    // Copier les fichiers du projet dans le répertoire du serveur web
+                    docker.container('php82').inside {
+                        sh 'cp -r /projectProfil/* /var/www/html/'
+                    }
+                }
+            }
+        }
+
     }
     post {
         success {
