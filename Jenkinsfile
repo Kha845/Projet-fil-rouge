@@ -3,14 +3,6 @@ pipeline {
 
     stages {
         
-        stage('Build') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                sh 'docker-compose build'
-            
-            }
-        }
-       
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
