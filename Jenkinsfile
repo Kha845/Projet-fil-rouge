@@ -31,7 +31,7 @@ pipeline {
             emailext (
                 subject: "Déploiement réussi",
                 body: "Le déploiement de l'application a été effectué avec succès.",
-                to: "dkhadidiatou75@email.com",
+                to: "dkhadidiatou75@gmail.com",
             )
         }
     }
