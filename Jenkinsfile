@@ -23,11 +23,7 @@ pipeline {
     post {
         success {
             // Envoyer une notification par e-mail si le déploiement est réussi
-            emailext (
-                subject: "Déploiement réussi",
-                body: "Le déploiement de l'application a été effectué avec succès.",
-                to: "dkhadidiatou75@gmail.com",
-            )
+                emailext body: 'Votre application est déployée avec succès', subject: 'Email build for projet fil', to: 'dkhadidiatou75@gmail.com'
         }
     }
 }
