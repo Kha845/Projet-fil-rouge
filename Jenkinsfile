@@ -17,14 +17,7 @@ pipeline {
             
             }
         }
-        stage('Copy Project Files') {
-            steps {
-                script {
-                    // Copier les fichiers du projet dans le répertoire du serveur web
-                        sh 'cp -r /projet-fil-rouge/projectProfil/* /var/www/html/'
-                }
-            }
-        }
+        
 
     }
     post {
