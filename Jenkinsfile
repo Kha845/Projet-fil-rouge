@@ -15,7 +15,6 @@ pipeline {
             steps {
                 // Étape de déploiement avec Docker Compose
                 sh 'docker-compose up -d'
-                sh 'docker cp . 4aa00aff21f9:/var/www/html/'
             
             }
         }
