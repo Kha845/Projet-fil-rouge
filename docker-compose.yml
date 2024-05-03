@@ -14,7 +14,7 @@ services:
     # Montre les volumes du conteneur.  
     volumes:
     #Montre le répertoire local 'projectProfil' au répertoire '/var/www/html' dans le conteneur.
-         - ./projectProfil:/var/www/html
+      - ./projectProfil:/var/www/html
    # Configuration pour la construction de l'image.
     build:
       # Utilise le répertoire courant comme contexte pour la construction.
@@ -47,7 +47,9 @@ services:
       ports:
           # Mappe le port 3308 de l'hôte au port 3306 du conteneur.
          - 3308:3306
- phpmyadm:
+
+ #Définit le service phpMyAdmin.
+   phpmyadm:
    # Utilise l'image Docker phpMyAdmin.
       image: phpmyadmin/phpmyadmin
       # Nomme le conteneur phpMyAdmin comme 'phpmyadmin'.
@@ -77,3 +79,5 @@ services:
          SONARQUBE_JDBC_URL: jdbc:mysql://db:3306/sonar
          SONARQUBE_JDBC_USERNAME: root
          SONARQUBE_JDBC_PASSWORD: pass
+
+  
