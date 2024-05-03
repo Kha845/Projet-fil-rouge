@@ -13,7 +13,7 @@ pipeline {
          stage('Test') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'php projet-fil-rouge/projectProfil/index.php'
+                sh 'php projectProfil/index.php'
             
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Copier les fichiers du projet dans le répertoire du serveur web
-                        sh 'cp -r /projectProfil/* /var/www/html/'
+                        sh 'cp -r /projet-fil-rouge/projectProfil/* /var/www/html/'
                 }
             }
         }
