@@ -13,7 +13,7 @@ RUN apt-get update && apt-get upgrade -y
 #elle installe les extensions MySQL pour PHP : mysqli (MySQL Improved) et pdo_mysql (driver PHP Data Objects pour MySQL).
 #et active les extensions PHP installées.
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli pdo_mysql
-COPY . /var/www/html/
+COPY projectProfil/*  /var/www/html/
 #Cette ligne expose le port 80, le port par défaut pour le trafic HTTP, 
 #permettant aux connexions externes d'atteindre le serveur Apache s'exécutant à l'intérieur du conteneur.
 EXPOSE 80
