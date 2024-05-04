@@ -1,15 +1,7 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                bat 'docker-compose build'
-            
-            }
-        }
-
+    stages 
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
