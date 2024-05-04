@@ -2,14 +2,7 @@ pipeline {
     agent any
 
     stages {
-         stage('uild') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                sh 'docker-compose build'
-            
-            }
-        }
-        
+    
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
