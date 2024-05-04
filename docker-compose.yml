@@ -70,14 +70,6 @@ services:
       ports:
       # Mappe le port 8899 de l'hôte au port 80 du conteneur.
          - 8899:80
-   sonar:
-     image: sonarqube:latest
-     container_name: serveurSonar
-     ports:
-        - 9000:9000
-     environment:
-         SONARQUBE_JDBC_URL: jdbc:mysql://db:3306/sonar
-         SONARQUBE_JDBC_USERNAME: root
-         SONARQUBE_JDBC_PASSWORD: pass
+  
 
   
