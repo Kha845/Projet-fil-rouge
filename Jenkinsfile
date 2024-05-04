@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'docker-compose build'
+                bat 'docker-compose build'
             
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             
             }
         }
