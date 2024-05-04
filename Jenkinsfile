@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'docker-compose build'
+                bad 'docker-compose build'
             
             }
         }
@@ -13,24 +13,16 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Étape de déploiement avec Docker Compose
-                sh 'docker-compose up -d'
+                bad 'docker-compose up -d'
             
             }
         }
-         stage('Test') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                sh 'php projectProfil/index.php'
-            
-            }
-        }
-        
 
     }
     post {
         success {
             // Envoyer une notification par e-mail si le déploiement est réussi
-                emailext body: 'Votre application est déployée avec succès', subject: 'Email build for projet fil', to: 'dkhadidiatou75@gmail.com'
+               emailext body: 'Votre application est déployée avec succés', subject: 'Result de mon build', to: 'dkhadidiatou75@gmail.com'
         }
     }
 }
