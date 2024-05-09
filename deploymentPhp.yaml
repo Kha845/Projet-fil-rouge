@@ -27,3 +27,13 @@ spec:  # Spécifications du déploiement
         - name: front-vol  # Nom du volume
           hostPath:  # Utilisation d'un chemin sur le nœud hôte
             path: /c/Users/dell/Documents/projetFilRouge/projectProfil/  # Chemin sur le nœud hôte
+      initContainers:  # Ajout d'un conteneur d'initiation
+        - name: copy-app-files
+          image: busybox  # Vous pouvez utiliser une image BusyBox légère pour la copie de fichiers
+          command: ['sh', '-c', 'cp -r /projectProfil/* /destination']  # Commande de copie des fichiers
+          volumeMounts:
+            - mountPath: /var/www/html  # Destination de la copie dans le conteneur
+              name: front-vol
+          volumeMounts:
+            - mountPath: /projectProfil  # Chemin source où se trouvent vos fichiers d'application sur le nœud hôte
+              name: front-vol
