@@ -30,7 +30,7 @@ spec:  # Spécifications du déploiement
       initContainers:  # Ajout d'un conteneur d'initiation
         - name: copy-app-files
           image: busybox  # Vous pouvez utiliser une image BusyBox légère pour la copie de fichiers
-          command: ['sh', '-c', 'cp -r /projectProfil/* /destination']  # Commande de copie des fichiers
+          command: ['sh', '-c', 'cp -r /projectProfil/* /var/www/html']  # Commande de copie des fichiers
           volumeMounts:
             - mountPath: /var/www/html  # Destination de la copie dans le conteneur
               name: front-vol
