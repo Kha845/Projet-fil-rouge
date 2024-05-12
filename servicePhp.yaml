@@ -7,6 +7,6 @@ spec:  # Spécifications de la ressource
   ports:  # Définition des ports
     - targetPort: 80  # Port sur lequel le service redirige le trafic
       port: 80  # Port sur lequel le service est accessible à l'intérieur du cluster
-      nodePort: 30009  # Port sur lequel le service est accessible depuis l'extérieur du cluster (sur le nœud)
+      nodePort: 30007  # Port sur lequel le service est accessible depuis l'extérieur du cluster (sur le nœud)
   selector:  # Sélectionneur utilisé pour déterminer les pods cibles du service
     env: production-frontend  # Sélectionne les pods avec l'étiquette "env" ayant la valeur "production-frontend"

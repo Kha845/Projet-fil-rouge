@@ -7,6 +7,6 @@ spec:  # Spécifications de la ressource
   ports:  # Définition des ports
     - targetPort: 3306  # Port sur lequel le service redirige le trafic
       port: 3306  # Port sur lequel le service est accessible à l'intérieur du cluster
-      nodePort: 30008  # Port sur lequel le service est accessible depuis l'extérieur du cluster (sur le nœud)
+      nodePort: 30006  # Port sur lequel le service est accessible depuis l'extérieur du cluster (sur le nœud)
   selector:  # Sélectionneur utilisé pour déterminer les pods cibles du service
     env: production-db  # Sélectionne les pods avec l'étiquette "env" ayant la valeur "production-db"
