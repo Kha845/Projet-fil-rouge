@@ -1,0 +1,4 @@
+
+FROM  ragh19/phpproject:web_v1
+
+COPY ./projectProfil/* /var/www/html/

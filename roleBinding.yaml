@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-pod-reader-binding
+  namespace: demokubernetes
+subjects:
+- kind: ServiceAccount
+  name: jenkins
+  namespace: demokubernetes
+roleRef:
+  kind: Role
+  name: jenkins-pod-reader
+  apiGroup: rbac.authorization.k8s.io

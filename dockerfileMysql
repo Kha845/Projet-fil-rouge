@@ -2,7 +2,12 @@
 FROM ragh19/phpproject:mysql_v1
 
 
-ADD  ./profil_infos.sql /docker-entrypointinitdb.d/profil_infos.sql
+COPY  ./projectProfil/profil_infos.sql /docker-entrypoint-initdb.d/
 
+ENV MYSQL_USER=khadidiatou
+ENV MYSQL_PASSWORD=diallo
+ENV MYSQL_ROOT_PASSWORD=redhat
+ENV MYSQL_DATABASE=profil_infos
 
+RUN echo "GRANT ALL PRIVILEGES ON *.* TO 'khadidiatou'@'%' WITH GRANT OPTION;" > /docker-entrypoint-initdb.d/grant_privileges.sql
 
