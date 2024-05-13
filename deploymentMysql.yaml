@@ -19,5 +19,5 @@ spec:  # Spécifications du déploiement
             claimName: db-pvc  # Nom de la PVC utilisée pour ce volume
       containers:  # Définition des conteneurs dans le pod
         - name: database  # Nom du conteneur
-          image: 'kha458/mysql-7.8:01'  # Image Docker utilisée pour le conteneur
+          image: 'kha458/dbe-mysql-7.8:01'  # Image Docker utilisée pour le conteneur
         
