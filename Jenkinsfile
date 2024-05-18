@@ -37,8 +37,7 @@ pipeline {
         }
         stage('notification slack'){
             
-                slackSend channel: '#test', color: 'good', message: 'welcome to jenkins, 
-                slack', notifyCommitters: true, teamDomain: 'notification depuis jenkins', tokenCredentialId: 'configjenkins'
+                slackSend channel: '#test', color: 'good', message: 'welcome to jenkins,slack', notifyCommitters: true, teamDomain: 'notification depuis jenkins', tokenCredentialId: 'configjenkins'
         }
         
     }
