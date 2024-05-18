@@ -40,7 +40,7 @@ pipeline {
                 }
             }
         }
-    }
+    
     post {
         success {
             // Envoyer une notification par e-mail si le déploiement est réussi
