@@ -7,13 +7,9 @@ pipeline {
                 // Étape de construction de l'image Docker
                 script {
                     //construction de l'image phpApache
-                   bat 'docker build -f dockerfilePhpApache -t myphpapacheproject-7.8:01 . '
-                   bat 'docker tag myphpapacheproject-7.8:01 kha458/myphpapacheproject-7.8:01'
-                   bat 'docker push kha458/myphpapacheproject-7.8:01'
+                   bat 'docker build -f dockerfilePhpApache -t myphpapacheproject-7.8:01 . 
                    //construction de l'image mysql
                    bat 'docker build -f dockerMysql -t kha458/mysql-7.8:01'
-                   bat  'docker tag mysql-7.8:01 kha458/mysql-7.8:01'
-                   bat 'docker push kha458/mysql-7.8:01'
                 }
             }
         }
