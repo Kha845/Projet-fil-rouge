@@ -7,6 +7,8 @@ pipeline {
                 // Étape de construction de l'image Docker
                 script {
                   bat 'docker build -f dockerfilePhpApache -t kha458/myphpapacheproject-7.8:01 .'
+                  bat 'docker tag kha458/myphpapacheproject-7.8:01 kha458/myphpapacheproject-7.8:01'
+                  bat 'docker push kha458/myphpapacheproject-7.8:01'
                   bat 'docker build -f dockerfileMysql -t kha458/dbe-mysql-7.8 .'
                 }
             }
@@ -35,15 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Start service php') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                script {
-                     bat 'minikube start'
-                    bat 'minikube service php-service'
-                }
-            }
-        }
+        
     }
     post {
         success {
