@@ -18,6 +18,6 @@ spec:  # Spécifications du déploiement
           persistentVolumeClaim:  # Utilisation d'une Persistent Volume Claim (PVC) existante
             claimName: frontend-pvc  # Nom de la PVC utilisée pour ce volume
       containers:  # Définition des conteneurs dans le pod
-        - name: frontend  # Nom du conteneur
-          image: kha458/myphpapache:01  # Image Docker utilisée pour le conteneur
+        - name: frontend  # Nom teneur
+          image: kha458/myphpapacheproject-7.8:01 # Image Docker utilisée pour le conteneur
          
