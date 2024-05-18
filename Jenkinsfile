@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        
+        SLACK_CHANNEL = '#test'
+        SLACK_CREDENTIALS_ID = '302f95ac579141ff97e8589c3ffb1a5d00b806b099efcab8e64847e295645f60'
+        }
 
     stages {
         stage('Build') {
@@ -35,11 +40,6 @@ pipeline {
                 }
             }
         }
-        stage('notification slack'){
-            
-                slackSend channel: '#test', color: 'good', message: 'welcome to jenkins,slack', notifyCommitters: true, teamDomain: 'notification depuis jenkins', tokenCredentialId: 'configjenkins'
-        }
-        
     }
     post {
         success {
@@ -49,6 +49,14 @@ pipeline {
                 body: "Le déploiement de l'application a été effectué avec succès.",
                 to: "dkhadidiatou75@email.com",
             )
+        }
+    }
+    post {
+        success {
+            slackSend(channel: '#build-notifications', color: 'good', message: "Build succeeded: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'")
+        }
+        failure {
+            slackSend(channel: '#build-notifications', color: 'danger', message: "Build failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'")
         }
     }
 }
