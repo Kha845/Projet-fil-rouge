@@ -39,6 +39,7 @@ pipeline {
             steps {
                 // Étape de déploiement avec Docker Compose
                 script {
+                     bat 'minikube start'
                     bat 'minikube service php-service'
                 }
             }
