@@ -3,7 +3,7 @@ pipeline {
     environment {
         
         SLACK_CHANNEL = '#test'
-        SLACK_CREDENTIALS_ID = '302f95ac579141ff97e8589c3ffb1a5d00b806b099efcab8e64847e295645f60'
+        SLACK_CREDENTIALS_ID = 'configSLACK'
         }
 
     stages {
