@@ -3,16 +3,6 @@ pipeline {
 
     stages {
 
-
-        stage('Build') {
-            steps {
-                // Étape de construction de l'image Docker
-                script {
-                     docker.build('myphpapacheproject-7.8:01', '-f dockerfilePhpApache .')
-                     docker.build('kha458/mysql-7.8:01', '-f dockerfileMysql .')
-                }
-            }
-        }
     stage('SonarQube analysis') {
       steps {
         script {
