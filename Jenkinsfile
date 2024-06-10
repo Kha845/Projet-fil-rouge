@@ -55,14 +55,7 @@ pipeline {
                 }
             }
         }
-        stage('Start service php') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                script {
-                    bat 'minikube service php-service'
-                }
-            }
-        }
+       
     }
     post {
         success {
