@@ -31,3 +31,7 @@ resource "kubernetes_deployment" "mydb-deployment" {
     }
   }
 }
+
+
+
+

@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     stages {
+
+
         stage('Build') {
             steps {
                 // Étape de construction de l'image Docker
@@ -17,6 +19,18 @@ pipeline {
                 }
             }
         }
+    stage('SonarQube analysis') {
+      steps {
+        script {
+          // Remplacez 'SonarQubeScanner' par le nom que vous avez donné à l'installation de SonarQube Scanner dans la configuration des outils globaux
+          scannerHome = tool 'sonarscanner'
+        }
+        withSonarQubeEnv('sonarqube') {
+          // Remplacez 'SonarQubeServer' par le nom de votre configuration de serveur SonarQube dans Jenkins
+          bat "${scannerHome}/bin/sonar-scanner"
+        }
+      }
+    }
         stage('Terraform init') {
             steps {
                 // Étape de déploiement avec Docker Compose

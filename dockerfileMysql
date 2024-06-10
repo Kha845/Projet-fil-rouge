@@ -16,3 +16,13 @@ RUN echo "GRANT ALL PRIVILEGES ON *.* TO 'khadidiatou'@'%' WITH GRANT OPTION;" >
     && chmod 644 /docker-entrypoint-initdb.d/grant_privileges.sql
 
 
+
+    
+
+
+
+idVolume = vol-0512140873cbd6961
+
+
+echo "* * * * *  aws ec2 create-snapshot --volume-id vol-0512140873cbd6961 2>&1 >> /tmp/cronlog" > cronjob crontab cronjob
+aws ec2 create-snapshot --volume-id vol-0512140873cbd6961
