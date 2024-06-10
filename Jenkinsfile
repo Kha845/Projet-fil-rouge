@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        scannerHome = tool name: 'C:\sonar-scanner-cli-6.0.0.4432-windows\sonar-scanner-6.0.0.4432-windows'
     }
     stages {
             stage('Anayse code'){
