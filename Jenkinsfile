@@ -1,20 +1,22 @@
 pipeline {
     agent any
 
-    stages {
-
-    stage('SonarQube analysis') {
-      steps {
-        script {
-          // Remplacez 'SonarQubeScanner' par le nom que vous avez donné à l'installation de SonarQube Scanner dans la configuration des outils globaux
-          scannerHome = tool 'sonarscanner'
-        }
-        withSonarQubeEnv('sonarqube') {
-          // Remplacez 'SonarQubeServer' par le nom de votre configuration de serveur SonarQube dans Jenkins
-          bat "${scannerHome}/bin/sonar-scanner"
-        }
-      }
+    environment {
+        scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
+    stages {
+            
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat """
+                    ${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=test-projectFilRouge\
+                    -Dsonar.projectName="test-projectFilRouge" \
+                    -Dsonar.projectVersion=1.0 \
+                    -Dsonar.sources=.
+                    """
+                }
+            }   
         stage('Terraform init') {
             steps {
                 // Étape de déploiement avec Docker Compose
