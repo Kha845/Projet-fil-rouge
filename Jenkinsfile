@@ -5,8 +5,8 @@ pipeline {
         scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
     stages {
-            
-            steps {
+            stage('Anayse code'){
+                steps {
                 withSonarQubeEnv('SonarQube') {
                     bat """
                     ${scannerHome}/bin/sonar-scanner \
@@ -16,7 +16,8 @@ pipeline {
                     -Dsonar.sources=.
                     """
                 }
-            }   
+            } 
+            }  
         stage('Terraform init') {
             steps {
                 // Étape de déploiement avec Docker Compose
