@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        scannerHome = tool name: 'C:\sonar-scanner-cli-6.0.0.4432-windows\sonar-scanner-6.0.0.4432-windows'
+        SCANNERHOME =  'C:\sonar-scanner-cli-6.0.0.4432-windows\sonar-scanner-6.0.0.4432-windows'
     }
     stages {
             stage('Anayse code'){
                 steps {
                 withSonarQubeEnv('SonarQube') {
                     bat """
-                    ${scannerHome}/bin/sonar-scanner \
+                    ${SCANNERHOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=test-projectFilRouge\
                     -Dsonar.projectName="test-projectFilRouge" \
                     -Dsonar.projectVersion=1.0 \
