@@ -1,23 +1,16 @@
 pipeline {
     agent any
-
-    environment {
-        SCANNERHOME =  'C:/sonar-scanner-cli-6.0.0.4432-windows/sonar-scanner-6.0.0.4432-windows'
-    }
     stages {
-            stage('Anayse code'){
-                steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat """
-                    ${SCANNERHOME}/bin/sonar-scanner \
-                    -Dsonar.projectKey=test-projectFilRouge\
-                    -Dsonar.projectName="test-projectFilRouge" \
-                    -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sources=.
-                    """
+        stage('SonarQube analysis') {
+          steps {
+             script {
+                     scannerHome = tool 'sonarscanner'// must match the name of an actual scanner installation directory on your Jenkins build agent
                 }
-            } 
-            }  
+             withSonarQubeEnv('sonarqubeserver') {// If you have configured more than one global server connection, you can specify its name as configured in Jenkins
+                 bat "${scannerHome}/bin/sonar-scanner"
+               }
+            }
+         }
         stage('Terraform init') {
             steps {
                 // Étape de déploiement avec Docker Compose
