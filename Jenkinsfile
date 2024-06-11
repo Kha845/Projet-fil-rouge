@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SCANNERHOME =  'C:\sonar-scanner-cli-6.0.0.4432-windows\sonar-scanner-6.0.0.4432-windows'
+        SCANNERHOME =  'C:/sonar-scanner-cli-6.0.0.4432-windows/sonar-scanner-6.0.0.4432-windows'
     }
     stages {
             stage('Anayse code'){
