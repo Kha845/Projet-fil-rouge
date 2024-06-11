@@ -1,15 +1,16 @@
 pipeline {
     agent any
-     environment {
-        scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-    }
     stages {
         stage('SonarQube analysis') {
           steps {
+              script{
+                   scannerHome = tool 'sonarqube'
+              }
              
              withSonarQubeEnv('sonarqube') {// If you have configured more than one global server connection, you can specify its name as configured in Jenkins
                  sh """
                     ${scannerHome}/bin/sonar-scanner \
+                    sonar-scanner.bat
                     -Dsonar.projectKey=test-projectFilRouge \
                     -Dsonar.projectName="test-projectFilRouge" \
                     -Dsonar.projectVersion=1.0 \
