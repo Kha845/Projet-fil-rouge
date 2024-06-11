@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        scannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
     stages {
         stage('SonarQube analysis') {
