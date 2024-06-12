@@ -1,16 +1,34 @@
 pipeline {
     agent any
+    environnment{
+        DOCKER_CREDENTIALS = credentials('docker')
+    }
     stages {
+        stage('Check Docker Images') {
+            steps {
+                script {
+                    def phpAppImageExists = bat(script: "docker pull ${DOCKER_CREDENTIALS_USR}/myphpapacheproject-7.8:01 || exit /b 0", returnStatus: true) == 0
+                    def mysqlImageExists = bat(script: "docker pull ${DOCKER_CREDENTIALS_USR}/mysql-7.8:01 || exit /b 0", returnStatus: true) == 0
+                    
+                    if (!phpAppImageExists) {
+                        buildDockerImage('App.Dockerfile', 'myphpapacheproject-7.8')
+                    }
+                    if (!mysqlImageExists) {
+                        buildDockerImage('Db.Dockerfile', 'mysql-7.8')
+                    }
+                }
+            }
+        } 
         stage('Build') {
             steps {
                   //construction de l'image phpApache
                    bat 'docker build -f dockerfilePhpApache -t myphpapacheproject-7.8:01 . '
-                   bat 'docker tag myphpapacheproject-7.8:01 kha458/myphpapacheproject-7.8:01'
-                   bat 'docker push kha458/myphpapacheproject-7.8:01'
+                   bat 'docker tag myphpapacheproject-7.8:01 458/myphpapacheproject-7.8:01'
+                   bat 'docker push ${DOCKER_CREDENTIALS_USR}/myphpapacheproject-7.8:01'
                    //construction de l'image mysql
-                   bat 'docker build -f dockerMysql -t kha458/mysql-7.8:01'
+                   bat 'docker build -f dockerMysql -t 458/mysql-7.8:01'
                    bat  'docker tag mysql-7.8:01 kha458/mysql-7.8:01'
-                   bat 'docker push kha458/mysql-7.8:01'
+                   bat 'docker push ${DOCKER_CREDENTIALS_USR}/mysql-7.8:01'
             }
         }
         stage('SonarQube analysis') {
@@ -29,33 +47,25 @@ pipeline {
                     """
                }
             }
-         }
-        stage('Terraform init') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                script {
-                    bat 'terraform init'
-                }
-            }
-        }
-        stage('Terraform plan') {
-            steps {
-                // Étape de déploiement avec Docker Compose
-                script {
-                    bat 'terraform plan'
-                }
-            }
-        }
+         }    
          stage('Terraform apply') {
             steps {
                 // Étape de déploiement avec Docker Compose
                 script {
-                    bat 'terraform apply'
+                     bat 'terraform plan'
+                    bat 'terraform init'
+                    bat 'terraform apply -auto-approve'
                 }
             }
         }
        
     }
+    def buildDockerImage(dockerfile, imageName) {
+    bat """
+        docker build -t ${imageName}:latest -f ${dockerfile} .
+        echo ${DOCKER_CREDENTIALS} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin
+        """
+     }
     post {
         success {
             // Envoyer une notification par e-mail si le déploiement est réussi
