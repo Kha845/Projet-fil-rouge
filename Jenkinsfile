@@ -11,10 +11,10 @@ pipeline {
                     def mysqlImageExists = bat(script: "docker pull %DOCKER_CREDENTIALS_USR%/mysql-7.8:01 || exit /b 0", returnStatus: true) == 0
                     
                     if (!phpAppImageExists) {
-                        buildDockerImage('App.Dockerfile', 'myphpapacheproject-7.8')
+                        buildDockerImage('dockerfilePhpApache', 'myphpapacheproject-7.8')
                     }
                     if (!mysqlImageExists) {
-                        buildDockerImage('Db.Dockerfile', 'mysql-7.8')
+                        buildDockerImage('dockerfileMysql', 'mysql-7.8')
                     }
                 }
             }
