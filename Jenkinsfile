@@ -59,10 +59,9 @@ pipeline {
             }
         }
         def buildDockerImage(dockerfile, imageName) {
-           bat """
-             docker build -t ${imageName}:latest -f ${dockerfile} .
-             """
-     }
+           bat 'docker build -t ${imageName}:latest -f ${dockerfile} .'
+            
+          }
        
     }
     
