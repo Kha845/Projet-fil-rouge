@@ -19,18 +19,23 @@ pipeline {
                 }
             }
         } 
-        stage('Build') {
+        stage('Build and Push Docker Images') {
             steps {
-                  //construction de l'image phpApache
-                   bat 'docker build -f dockerfilePhpApache -t myphpapacheproject-7.8:01 . '
-                   bat 'docker tag myphpapacheproject-7.8:01 myphpapacheproject-7.8:01'
-                   bat 'docker push %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01'
-                   //construction de l'image mysql
-                   bat 'docker build -f dockerMysql -t 458/mysql-7.8:01'
-                   bat  'docker tag mysql-7.8:01 kha458/mysql-7.8:01'
-                   bat 'docker push %DOCKER_CREDENTIALS_USR%/mysql-7.8:01'
+                script {
+                    docker.withRegistry('', 'docker') {
+                        if (bat(script: "docker images -q  myphpapacheproject-7.8:01, returnStatus: true) != 0) {
+                            bat "docker tag  myphpapacheproject-7.8:01 %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
+                            bat "docker push  %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
+                        }
+                        if (bat(script: "docker images -q  mysql-7.8:01", returnStatus: true) != 0) {
+                            bat "docker tag mysql-7.8:01 %DOCKER_CREDENTIALS_USR%/mysql-7.8:01"
+                            bat "docker push  %DOCKER_CREDENTIALS_USR%/mysql-7.8:01"
+                        }
+                    }
+                }
             }
         }
+
         stage('SonarQube analysis') {
           steps {
               script{
