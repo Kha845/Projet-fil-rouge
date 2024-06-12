@@ -22,7 +22,7 @@ pipeline {
         stage('Build and Push Docker Images') {
             steps {
                 script {
-                    docker.withRegistry('', 'docker') {
+                    docker.withRegistry('', 'docker'){
                         if (bat(script: "docker images -q  myphpapacheproject-7.8:01, returnStatus: true) != 0){
                             bat "docker tag  myphpapacheproject-7.8:01 %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
                             bat "docker push  %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
