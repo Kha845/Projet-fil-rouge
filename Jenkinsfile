@@ -23,11 +23,11 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'docker'){
-                        if (bat(script: "docker images -q  myphpapacheproject-7.8:01, returnStatus: true) != 0){
+                        if (bat(script: "docker images -q myphpapacheproject-7.8:01, returnStatus: true) != 0){
                             bat "docker tag  myphpapacheproject-7.8:01 %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
                             bat "docker push  %DOCKER_CREDENTIALS_USR%/myphpapacheproject-7.8:01"
                         }
-                        if (bat(script: "docker images -q  mysql-7.8:01", returnStatus: true) != 0){
+                        if (bat(script: "docker images -q mysql-7.8:01", returnStatus: true) != 0){
                             bat "docker tag mysql-7.8:01 %DOCKER_CREDENTIALS_USR%/mysql-7.8:01"
                             bat "docker push  %DOCKER_CREDENTIALS_USR%/mysql-7.8:01"
                         }
