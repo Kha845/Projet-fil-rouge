@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        DOCKER_CREDENTIALS = credentials('docker')
+           DOCKER_CREDENTIALS = credentials('docker')
     }
     stages {
         stage('Check Docker Images') {
@@ -58,14 +58,14 @@ pipeline {
                 }
             }
         }
+        def buildDockerImage(dockerfile, imageName) {
+           bat """
+             docker build -t ${imageName}:latest -f ${dockerfile} .
+             """
+     }
        
     }
-    def buildDockerImage(dockerfile, imageName) {
-    bat """
-        docker build -t ${imageName}:latest -f ${dockerfile} .
-        echo ${DOCKER_CREDENTIALS} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin
-        """
-     }
+    
     post {
         success {
             // Envoyer une notification par e-mail si le déploiement est réussi
