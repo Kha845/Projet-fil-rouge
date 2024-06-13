@@ -59,16 +59,26 @@ pipeline {
                 waitForQualityGate abortPipeline: true
             }
          }
-         stage('Terraform apply') {
+        
+        stage('Deployment'){
             steps {
-                // Étape de déploiement avec Docker Compose
-                script {
-                     bat 'terraform plan'
-                    bat 'terraform init'
-                    bat 'terraform apply -auto-approve'
+                
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                    
+                             bat 'kubectl apply -f pvcPhp.yaml --kubeconfig=%KUBECONFIG% --validate=false --namespace demo'
+                             
+                             bat 'kubectl apply  -f pvcMysql.yaml  --kubeconfig=%KUBECONFIG% --validate=false --namespace demo'
+                             
+                             bat 'kubectl apply  -f servicePhp.yaml --kubeconfig=%KUBECONFIG% --validate=false --namespace demo'
+                             
+                             bat 'kubectl apply  -f serviceMysql.yaml  --kubeconfig=%KUBECONFIG% --validate=false --namespace demo' 
+                             
+                             bat 'kubectl apply  -f deploymentPhp.yaml --kubeconfig=%KUBECONFIG% --validate=false --namespace demo'  
+                             
+                             bat 'kubectl apply  -f deploymentMysql.yaml --kubeconfig=%KUBECONFIG% --validate=false --namespace demo'   
+                        }
                 }
             }
-        }
        
     }
     
