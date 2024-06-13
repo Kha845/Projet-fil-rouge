@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path    = "C:/Users/dell/.kube/config"
+  config_path    = ".kube/config"
   config_context = "minikube"
 }
