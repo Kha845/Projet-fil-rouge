@@ -53,7 +53,12 @@ pipeline {
                     """
                }
             }
-         }    
+         }  
+          stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+         }
          stage('Terraform apply') {
             steps {
                 // Étape de déploiement avec Docker Compose
