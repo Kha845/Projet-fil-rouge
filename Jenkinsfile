@@ -36,7 +36,6 @@ pipeline {
                 }
             }
         }
-
         stage('SonarQube analysis') {
           steps {
               script{
@@ -54,7 +53,11 @@ pipeline {
                }
             }
          }  
-        
+         stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
         stage('Deployment'){
             steps {
                 
