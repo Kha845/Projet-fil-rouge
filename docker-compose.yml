@@ -71,9 +71,13 @@ services:
       # Mappe le port 8899 de l'hôte au port 80 du conteneur.
          - 8899:80
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 
   
+=======
+   
+>>>>>>> demoSonarQube
 =======
    
 >>>>>>> demoSonarQube
