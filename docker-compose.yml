@@ -5,7 +5,7 @@ services:
 # Définit le service PHP.
    php:
    # Utilise l'image Docker PHP 8.2 avec Apache.
-    image: php:8.2-apache
+    image: my-php-image
     #Nomme le conteneur PHP comme 'php82'.
     container_name: php82
     # Configure les ports du conteneur.Mappe le port 8080 de l'hôte au port 80 du conteneur.
@@ -70,6 +70,10 @@ services:
       ports:
       # Mappe le port 8899 de l'hôte au port 80 du conteneur.
          - 8899:80
+<<<<<<< HEAD
   
 
   
+=======
+   
+>>>>>>> demoSonarQube
