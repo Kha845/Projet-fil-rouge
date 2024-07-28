@@ -1,0 +1,24 @@
+$
+db-name = cafe_db
+db_password = Re:Start!9
+url=ec2-35-91-215-163.us-west-2.compute.amazonaws.com
+db-root=root
+"dbUrl": "ec2-35-91-215-163.us-west-2.compute.amazonaws.com",
+  "dbName": "cafe_db",
+  "dbUser": "root",
+  "dbPassword": "Re:Start!9"
+
+
+  arn = "arn:aws:sns:us-west-2:851725623905:salesAnalysisReportTopic"
+
+
+
+  arn:aws:iam::851725623905:role/salesAnalysisReportRole
+
+  aws lambda create-function \
+--function-name salesAnalysisReport \
+--runtime python3.9 \
+--zip-file fileb://salesAnalysisReport-v2.zip \
+--handler salesAnalysisReport.lambda_handler \
+--region us-west-2 \
+--role arn:aws:iam::851725623905:role/salesAnalysisReportRole

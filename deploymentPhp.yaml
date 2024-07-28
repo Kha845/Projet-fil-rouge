@@ -1,0 +1,23 @@
+apiVersion: apps/v1  # Version de l'API Kubernetes utilisée
+kind: Deployment  # Type de ressource Kubernetes (un déploiement)
+metadata:  # Métadonnées de la ressource
+  name: myphp-deployment  # Nom du déploiement
+spec:  # Spécifications du déploiement
+  replicas: 3  # Nombre de répliques (pods) à maintenir en fonctionnement
+  selector:  # Sélecteur utilisé pour déterminer quels pods sont gérés par ce déploiement
+    matchLabels:  # Correspondance d'étiquettes
+      env: production-frontend  # Sélectionne les pods avec l'étiquette "env" ayant la valeur "production-frontend"
+  template:  # Modèle pour créer de nouveaux pods
+    metadata:  # Métadonnées du pod
+      name: myfrontend-pod  # Nom du pod
+      labels:  # Étiquettes du pod
+        env: production-frontend  # Étiquette "env" avec la valeur "production-frontend"
+    spec:  # Spécifications du pod
+      volumes:  # Définition des volumes pour le pod
+        - name: front-vol  # Nom du volume
+          persistentVolumeClaim:  # Utilisation d'une Persistent Volume Claim (PVC) existante
+            claimName: frontend-pvc  # Nom de la PVC utilisée pour ce volume
+      containers:  # Définition des conteneurs dans le pod
+        - name: frontend  # Nom teneur
+          image: kha458/myphpapacheproject-7.8:01 # Image Docker utilisée pour le conteneur
+         

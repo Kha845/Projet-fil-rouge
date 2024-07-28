@@ -1,0 +1,28 @@
+# Utilisez l'image officielle MySQL comme point de départ
+FROM ragh19/phpproject:mysql_v1
+
+
+COPY  ./projectProfil/profil_infos.sql /docker-entrypoint-initdb.d/
+
+RUN chmod 644 /docker-entrypoint-initdb.d/profil_infos.sql
+
+ENV MYSQL_USER=khadidiatou
+ENV MYSQL_PASSWORD=diallo
+ENV MYSQL_ROOT_PASSWORD=redhat
+ENV MYSQL_DATABASE=profil_infos
+
+# Créez le fichier SQL pour accorder tous les privilèges à l'utilisateur khadidiatou
+RUN echo "GRANT ALL PRIVILEGES ON *.* TO 'khadidiatou'@'%' WITH GRANT OPTION;" > /docker-entrypoint-initdb.d/grant_privileges.sql \
+    && chmod 644 /docker-entrypoint-initdb.d/grant_privileges.sql
+
+
+
+    
+
+
+
+idVolume = vol-0512140873cbd6961
+
+
+echo "* * * * *  aws ec2 create-snapshot --volume-id vol-0512140873cbd6961 2>&1 >> /tmp/cronlog" > cronjob crontab cronjob
+aws ec2 create-snapshot --volume-id vol-0512140873cbd6961

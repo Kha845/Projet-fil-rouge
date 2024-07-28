@@ -1,0 +1,12 @@
+apiVersion: v1  # Version de l'API Kubernetes utilisée
+kind: PersistentVolumeClaim  # Type de ressource Kubernetes (une PVC)
+metadata:  # Métadonnées de la ressource
+  name: frontend-pvc  # Nom de la Persistent Volume Claim
+  labels:  # Étiquettes associées à la ressource
+    name: frontendpvc1  # Étiquette avec la valeur "frontendpvc1"
+spec:  # Spécifications de la ressource
+  accessModes:  # Modes d'accès autorisés pour le volume
+    - ReadWriteOnce  # Un seul nœud peut monter le volume en lecture/écriture
+  resources:  # Ressources demandées pour la PVC
+    requests:  # Ressources spécifiques demandées
+      storage: 2Gi  # Demande de stockage de 2 gigaoctets

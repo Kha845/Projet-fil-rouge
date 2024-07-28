@@ -1,0 +1,23 @@
+apiVersion: apps/v1  # Version de l'API Kubernetes utilisée
+kind: Deployment  # Type de ressource Kubernetes (un déploiement)
+metadata:  # Métadonnées de la ressource
+  name: mydb-deployment  # Nom du déploiement
+spec:  # Spécifications du déploiement
+  replicas: 1  # Nombre de répliques (pods) à maintenir en fonctionnement
+  selector:  # Sélecteur utilisé pour déterminer quels pods sont gérés par ce déploiement
+    matchLabels:  # Correspondance d'étiquettes
+      env: production-db  # Sélectionne les pods avec l'étiquette "env" ayant la valeur "production-db"
+  template:  # Modèle pour créer de nouveaux pods
+    metadata:  # Métadonnées du pod
+      name: mydb-pod  # Nom du pod
+      labels:  # Étiquettes du pod
+        env: production-db  # Étiquette "env" avec la valeur "production-db"
+    spec:  # Spécifications du pod
+      volumes:  # Définition des volumes pour le pod
+        - name: db-vol  # Nom du volume
+          persistentVolumeClaim:  # Utilisation d'une Persistent Volume Claim (PVC) existante
+            claimName: db-pvc  # Nom de la PVC utilisée pour ce volume
+      containers:  # Définition des conteneurs dans le pod
+        - name: database  # Nom du conteneur
+          image: 'kha458/mysql-7.8:01'  # Image Docker utilisée pour le conteneur
+        

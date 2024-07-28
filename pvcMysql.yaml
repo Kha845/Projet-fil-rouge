@@ -1,0 +1,12 @@
+apiVersion: v1  # Version de l'API Kubernetes utilisée
+kind: PersistentVolumeClaim  # Type de ressource Kubernetes
+metadata:  # Métadonnées de la ressource
+  name: db-pvc  # Nom de la Persistent Volume Claim
+  labels:  # Étiquettes associées à la ressource
+    name: dbpvc1  # Étiquette avec la valeur "dbpvc1"
+spec:  # Spécifications de la ressource
+  accessModes:  # Modes d'accès autorisés pour le volume
+    - ReadWriteOnce  # Un seul nœud peut monter le volume en lecture/écriture
+  resources:  # Ressources demandées pour la PVC
+    requests:  # Ressources spécifiques demandées
+      storage: 2Gi  # Demande de stockage de 2 gigaoctets
